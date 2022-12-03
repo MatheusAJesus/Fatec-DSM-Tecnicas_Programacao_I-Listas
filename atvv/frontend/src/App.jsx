@@ -19,6 +19,7 @@ import CadastroProduto from "./pages/produtos/cadastro/cadastroProduto.page";
 import CadastroServico from "./pages/servicos/cadastro/cadastroServico.page";
 import EditarProduto from "./pages/produtos/editar/editarProduto.page";
 import EditarServico from "./pages/servicos/editar/editarServico.page";
+import NovoAtendimento from "./pages/atendimentos/novoAtendimento/novoAtendimento.page";
 
 function App() {
 
@@ -32,6 +33,8 @@ function App() {
         <Route path="/" element={<Home />} />
         
         <Route path="/atendimentos" element={<Atendimentos />} />
+        <Route path="/novoAtendimento" element={<NovoAtendimento />} />
+
 
         <Route path="/clientes" element={<Clientes />} />
         <Route path="/clientes/cadastro" element={<CadastroCliente />} />

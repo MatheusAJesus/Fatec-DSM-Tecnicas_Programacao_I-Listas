@@ -1,10 +1,10 @@
 import React from "react";
-
+import { useNavigate } from 'react-router-dom';
 import { ListaAtendimentos } from "./atendimentos.defaultStyles"
 import { mockAtendimentos } from "../../mocks/mockAtendimentos.ts"
 
 function Atendimentos() {
-        
+    const navigate = useNavigate();
     let atendimentos = mockAtendimentos.map(atendimento =>{
         return (
             <div key={atendimento.id}>
@@ -32,7 +32,7 @@ function Atendimentos() {
         <>
             <ListaAtendimentos>
             <h1>Atendimentos</h1>
-                <button className="editar">Novo Atendimento</button>
+                <button className="editar" onClick={()=>{navigate('/novoAtendimento')}}>Novo Atendimento</button>
                 {atendimentos}  
             </ListaAtendimentos>
         </>
