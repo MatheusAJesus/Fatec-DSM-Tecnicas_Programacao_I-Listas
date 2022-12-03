@@ -1,0 +1,10 @@
+.modal{
+    opacity: 0;
+    display: none;
+}
+
+.modal.show {
+    opacity: 1;
+    display: flex;
+    justify-content: center;
+}

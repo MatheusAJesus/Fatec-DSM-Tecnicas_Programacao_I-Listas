@@ -11,7 +11,6 @@ const AppGlobalStyle = createGlobalStyle`
     }
 
     button{
-        background-color:#ffacac;
         color:white;   
         border:none;
         padding: 10px 15px;

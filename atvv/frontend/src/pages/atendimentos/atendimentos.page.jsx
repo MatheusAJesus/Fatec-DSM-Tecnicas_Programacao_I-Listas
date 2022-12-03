@@ -32,7 +32,7 @@ function Atendimentos() {
         <>
             <ListaAtendimentos>
             <h1>Atendimentos</h1>
-                <button>Novo Atendimento</button>
+                <button className="editar">Novo Atendimento</button>
                 {atendimentos}  
             </ListaAtendimentos>
         </>

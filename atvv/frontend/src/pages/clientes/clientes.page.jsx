@@ -1,12 +1,22 @@
-import React from "react";
+import React, {useState} from "react";
 import { useNavigate } from 'react-router-dom';
+
+import PaginaModal from "../../components/modalRemover/modalExcluir";
 import { mockClientes } from "../../mocks/mockClientes.ts";
 import { ListaClientes } from "./clientes.defaultStyles";
 
 
 
+
 function Clientes() {
     const navigate = useNavigate();
+    const [clienteSelecionado, setId] = useState(0);
+
+    function abrir(cliente) {
+        setId(cliente)
+        document.querySelector('.modal').classList.add('show')
+    }
+
     let clientes = mockClientes.map(cliente =>{
         return (
             <div key={cliente.cpf}>
@@ -15,8 +25,8 @@ function Clientes() {
                         <b>{cliente.nome}</b>
                     </summary>
                     <div>
-                    <button className="editar" >Detalhes</button>
-                    <button className="excluir">Excluir</button>
+                    <button className="editar" onClick={()=>{navigate(`/cliente/editar/${cliente.cpf}`)}} >Editar</button>
+                    <button className="excluir"  onClick={() => abrir(cliente)}>Excluir</button>
                         <p><b>Nome social: </b>{cliente.nomeSocial}</p>
                         <p><b>Gênero: </b>{cliente.genero}</p>
                         <p><b>CPF: </b>{cliente.cpf}</p>
@@ -30,9 +40,10 @@ function Clientes() {
     
     return (
         <>
+            <PaginaModal objeto={clienteSelecionado} tipoObjeto='cliente' />  
             <ListaClientes>
                 <h1>Clientes</h1>
-                <button onClick={()=>{navigate('/clientes/cadastro')}}>Adicionar</button>
+                <button className="editar" onClick={()=>{navigate('/clientes/cadastro')}}>Adicionar</button>
                 {clientes}  
             </ListaClientes>
         </>

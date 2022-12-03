@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 // import { useNavigate } from 'react-router-dom';
 
 import { mockClientes } from '../../../mocks/mockClientes.ts'
-import { Formulario } from "./cadastroCliente.style";
+import { Formulario } from "../clientes.defaultStyles"
 
 
 function CadastroCliente(){
@@ -11,6 +11,7 @@ function CadastroCliente(){
 	const { register, handleSubmit } = useForm();
 	
 	const onSubmit = data =>{
+		console.log(data.genero)
 		mockClientes.push(
 			{
 				nome: data.name,
@@ -43,7 +44,12 @@ function CadastroCliente(){
 				<label>
 					Gênero
 				</label>
-					<input type="text" name="genero" {...register("genero", { required: true })}/>
+					<select name="genero" {...register("genero", { required: true })}>
+						<option value="masculino">Masculino</option>
+						<option value="feminino">Feminino</option>
+						<option selected value="nao informado">Não informado</option>
+					</select>
+					{/* <input type="text" name="genero" {...register("genero", { required: true })}/> */}
 				<label>
 					CPF
 				</label>
@@ -55,11 +61,11 @@ function CadastroCliente(){
 				<label>
 					RG
 				</label>
-					<input type="number" name="dataEmissaoCpf" label="RG" {...register("dataEmissaoCpf", { required: true })}/>
+					<input type="number" name="rg" {...register("rg", { required: true })}/>
 				<label>
 					Data emissão RG
 				</label>
-					<input type="date" name="dataEmissaoCpf" {...register("dataEmissaoCpf", { required: true })}/>
+					<input type="date" name="dataEmissaoRg" {...register("dataEmissaoRg", { required: true })}/>
 				<label>
 					DDD
 				</label>
@@ -69,7 +75,7 @@ function CadastroCliente(){
 				</label>
 					<input type="number" name="telefone" {...register("telefone", { required: true })}/>
 				<div>
-					<button className="editar" type="submit">Cadastrar</button>
+					<button className="editar" type="submit">Adicionar</button>
 				</div>
 			</Formulario>
 		</>
