@@ -7,13 +7,16 @@ export const ListaClientes = styled.div`
         padding:15px 15px;
         margin-bottom:1px;
         border-bottom:solid 1px  #eaeaea;
+        border-radius: 5px;;
     }
     summary::marker {
         content: "";
     }
+
     summary:hover{
-        background-color:#fcd2f7;
+        background-color:#fddbdb;
     }
+
     details div{
         padding: 15px 25px; 
         border-bottom:solid 1px  #eaeaea;

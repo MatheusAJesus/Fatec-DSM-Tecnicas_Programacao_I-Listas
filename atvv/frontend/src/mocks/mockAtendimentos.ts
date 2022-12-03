@@ -1,10 +1,8 @@
-import Atendimento from "../modelo/atendimento";
-
-export const mockAtendimentos: Array<Atendimento> = [
+export const mockAtendimentos = [
 
     {
         id: 1,
-        dataAtendimento: new Date('2022/01/19'),
+        dataAtendimento: '19/01/2022',
         cliente: 'Gerson',
         cpfCliente: '1234567810',
         generoCliente: 'masculino',
@@ -39,7 +37,7 @@ export const mockAtendimentos: Array<Atendimento> = [
     },
     {
         id: 2,
-        dataAtendimento: new Date('2022/01/19'),
+        dataAtendimento: '19/01/2022',
         cliente: 'Matheus',
         cpfCliente: '1234567890',
         generoCliente: 'masculino',
@@ -74,7 +72,7 @@ export const mockAtendimentos: Array<Atendimento> = [
     },
     {
         id: 3,
-        dataAtendimento: new Date('2022/01/19'),
+        dataAtendimento: '19/01/2022',
         cliente: 'Kevin',
         cpfCliente: '1234567891',
         generoCliente: 'masculino',
@@ -98,7 +96,7 @@ export const mockAtendimentos: Array<Atendimento> = [
     },
     {
         id: 4,
-        dataAtendimento: new Date('2022/01/19'),
+        dataAtendimento: '19/01/2022',
         cliente: 'Bolsonaro',
         cpfCliente: '1234567819',
         generoCliente: 'masculino',
@@ -122,7 +120,7 @@ export const mockAtendimentos: Array<Atendimento> = [
     },
     {
         id: 5,
-        dataAtendimento: new Date('2022/01/19'),
+        dataAtendimento: '19/01/2022',
         cliente: 'Daenerys',
         cpfCliente: '1234567829',
         generoCliente: 'feminino',
@@ -156,7 +154,7 @@ export const mockAtendimentos: Array<Atendimento> = [
     },
     {
         id: 6,
-        dataAtendimento: new Date('2022/01/19'),
+        dataAtendimento: '19/01/2022',
         cliente: 'Petala',
         cpfCliente: '1234567824',
         generoCliente: 'feminino',
@@ -195,7 +193,7 @@ export const mockAtendimentos: Array<Atendimento> = [
     },
     {
         id: 7,
-        dataAtendimento: new Date('2022/01/19'),
+        dataAtendimento: '19/01/2022',
         cliente: 'Goretti',
         cpfCliente: '1234567825',
         generoCliente: 'feminino',
@@ -229,7 +227,7 @@ export const mockAtendimentos: Array<Atendimento> = [
     },
     {
         id: 8,
-        dataAtendimento: new Date('2022/01/19'),
+        dataAtendimento: '19/01/2022',
         cliente: 'Carol',
         cpfCliente: '1234567830',
         generoCliente: 'feminino',
@@ -263,7 +261,7 @@ export const mockAtendimentos: Array<Atendimento> = [
     },
     {
         id: 9,
-        dataAtendimento: new Date('2022/01/19'),
+        dataAtendimento: '19/01/2022',
         cliente: 'Marcos',
         cpfCliente: '1234567820',
         generoCliente: 'masculino',
@@ -302,7 +300,7 @@ export const mockAtendimentos: Array<Atendimento> = [
     },
     {
         id: 10,
-        dataAtendimento: new Date('2022/01/19'),
+        dataAtendimento: '19/01/2022',
         cliente: 'Sabha',
         cpfCliente: '1234567818',
         generoCliente: 'masculino',
@@ -349,7 +347,7 @@ export const mockAtendimentos: Array<Atendimento> = [
     },
     {
         id: 11,
-        dataAtendimento: new Date('2022/01/19'),
+        dataAtendimento: '19/01/2022',
         cliente: 'Arakaki',
         cpfCliente: '1234567812',
         generoCliente: 'masculino',
@@ -367,7 +365,7 @@ export const mockAtendimentos: Array<Atendimento> = [
     },
     {
         id: 12,
-        dataAtendimento: new Date('2022/01/19'),
+        dataAtendimento: '19/01/2022',
         cliente: 'Naiara',
         cpfCliente: '1234567899',
         generoCliente: 'feminino',
