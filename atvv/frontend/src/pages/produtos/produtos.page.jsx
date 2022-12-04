@@ -1,10 +1,11 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import { useNavigate } from 'react-router-dom';
 
 import PaginaModal from "../../components/modalRemover/modalExcluir";
 
 import { mockProdutos } from "../../mocks/mockProdutos.ts"
 import { ListaProdutos } from './produtos.defaultStyles'
+import {api} from '../../services/api'
 
 function Produtos() {
     const navigate = useNavigate();
@@ -15,17 +16,27 @@ function Produtos() {
         document.querySelector('.modal').classList.add('show')
     }
 
-    let produtos = mockProdutos.map(produto =>{
+    const [produtos, setProdutos] = useState([]);
+
+    useEffect(() => {
+        async function loadProdutos() {
+            const response = await api.get("/produtos");
+            setProdutos(response.data);
+        }
+        loadProdutos();
+    }, []);
+
+    let listProdutos  = produtos.map((produto) =>{
         return (
-            <div key={produto.id}>
+            <div key={produto.prod_codigo}>
                 <details >
                     <summary>
-                        <b>{produto.nome}</b>
+                        <b>{produto.prod_descricao}</b>
                     </summary>
                     <div>
                     <button className="editar" onClick={()=>{navigate(`/produto/editar/${produto.id}`)}}>Editar</button>
                     <button className="excluir" onClick={() => abrir(produto)}>Excluir</button>
-                    <p><b>Valor: </b>{`R$ ${produto.valor}`}</p>
+                    <p><b>Valor: </b>{`R$ ${produto.prod_valor}`}</p>
                     </div>
                 </details>
             </div>
@@ -38,7 +49,7 @@ function Produtos() {
             <ListaProdutos>
             <h1>Produtos</h1>
                 <button className="editar" onClick={()=>{navigate('/produtos/cadastro')}}>Adicionar</button>
-                {produtos}  
+                {listProdutos}  
             </ListaProdutos>
         </>
     )

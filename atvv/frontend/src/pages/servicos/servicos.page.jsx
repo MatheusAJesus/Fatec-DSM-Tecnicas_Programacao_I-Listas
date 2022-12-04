@@ -1,10 +1,10 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import { useNavigate } from 'react-router-dom';
 
 import PaginaModal from "../../components/modalRemover/modalExcluir";
 
-import { mockServicos } from "../../mocks/mockServicos.ts"
 import { ListaServicos } from "./servicos.defaultStyles"
+import {api} from '../../services/api'
 
 function Servicos() {
     const navigate = useNavigate();
@@ -15,17 +15,27 @@ function Servicos() {
         document.querySelector('.modal').classList.add('show')
     }
 
-    let servicos = mockServicos.map(servico =>{
+    const [servicos, setServico] = useState([]);
+
+    useEffect(() => {
+        async function loadServicos() {
+            const response = await api.get("/servicos");
+            setServico(response.data);
+        }
+        loadServicos();
+    }, []);
+
+    let listServicos = servicos.map((servico) =>{
         return (
-            <div key={servico.id}>
+            <div key={servico.serv_codigo}>
                 <details >
                     <summary>
-                        <b>{servico.nome}</b>
+                        <b>{servico.serv_descricao}</b>
                     </summary>
                     <div>
-                    <button className="editar" onClick={()=>{navigate(`/servico/editar/${servico.id}`)}}>Editar</button>
+                    <button className="editar" onClick={()=>{navigate(`/servico/editar/${servico.serv_codigo}`)}}>Editar</button>
                     <button className="excluir" onClick={() => abrir(servico)}>Excluir</button>
-                    <p><b>Valor: </b>{`R$ ${servico.valor}`}</p>
+                    <p><b>Valor: </b>{`R$ ${servico.serv_valor}`}</p>
                     </div>
                 </details>
             </div>
@@ -38,7 +48,7 @@ function Servicos() {
             <ListaServicos>
             <h1>Serviços</h1>
                 <button className="editar" onClick={()=>{navigate('/servicos/cadastro')}}>Adicionar</button>
-                {servicos}  
+                {listServicos}  
             </ListaServicos>
         </>
     )

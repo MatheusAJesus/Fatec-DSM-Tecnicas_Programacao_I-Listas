@@ -6,7 +6,7 @@ function Home() {
     return (
         <>
             <HomeGlobalStyle />
-            <h1>Hello from Home</h1>
+            <h1>Bem vindo ao sistema WB</h1>
         </>
     )
 
