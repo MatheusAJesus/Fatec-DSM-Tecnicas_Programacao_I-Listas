@@ -1,9 +1,10 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import { useNavigate } from 'react-router-dom';
 
 import PaginaModal from "../../components/modalRemover/modalExcluir";
 import { mockClientes } from "../../mocks/mockClientes.ts";
 import { ListaClientes } from "./clientes.defaultStyles";
+import {api} from '../../services/api'
 
 
 
@@ -17,21 +18,31 @@ function Clientes() {
         document.querySelector('.modal').classList.add('show')
     }
 
-    let clientes = mockClientes.map(cliente =>{
+    const [clientes, setCliente] = useState([]);
+
+    useEffect(() => {
+        async function loadClientes() {
+            const response = await api.get("/clientes");
+            setCliente(response.data);
+        }
+        loadClientes();
+    }, []);
+
+    let listClientes = clientes.map((cliente) =>{
         return (
-            <div key={cliente.cpf}>
+            <div key={cliente.cli_codigo}>
                 <details >
                     <summary>
-                        <b>{cliente.nome}</b>
+                        <b>{cliente.cli_nome}</b>
                     </summary>
                     <div>
-                    <button className="editar" onClick={()=>{navigate(`/cliente/editar/${cliente.cpf}`)}} >Editar</button>
+                    <button className="editar" onClick={()=>{navigate(`/cliente/editar/${cliente.cli_codigo}`)}} >Editar</button>
                     <button className="excluir"  onClick={() => abrir(cliente)}>Excluir</button>
-                        <p><b>Nome social: </b>{cliente.nomeSocial}</p>
-                        <p><b>Gênero: </b>{cliente.genero}</p>
-                        <p><b>CPF: </b>{cliente.cpf}</p>
-                        <p><b>RG: </b> {cliente.rg}</p>
-                        <p><b>Telefone: </b> {`(${cliente.DDD}) ${cliente.telefone}`}</p>
+                        <p><b>Nome social: </b>{cliente.cli_nome_social}</p>
+                        <p><b>Gênero: </b>{cliente.cli_genero}</p>
+                        <p><b>CPF: </b>{cliente.cli_cpf}</p>
+                        <p><b>RG: </b> {cliente.cli_rg}</p>
+                        <p><b>Telefone: </b> {`${cliente.cli_telefone}`}</p>
                     </div>
                 </details>
             </div>
@@ -44,7 +55,7 @@ function Clientes() {
             <ListaClientes>
                 <h1>Clientes</h1>
                 <button className="editar" onClick={()=>{navigate('/clientes/cadastro')}}>Adicionar</button>
-                {clientes}  
+                {listClientes}  
             </ListaClientes>
         </>
     )
