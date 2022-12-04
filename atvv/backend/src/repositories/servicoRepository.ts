@@ -37,7 +37,7 @@ export class ServicoRepository{
     return servico;
   };
 
-  async delete(id: number | string) {
-    await ServicoModel.destroy({ where: { id } });
+  async delete(serv_codigo: number) {
+    await ServicoModel.destroy({ where: { serv_codigo } });
   }
 }

@@ -1,4 +1,4 @@
-// import { api } from '../../services/api';
+import { api } from '../../services/api';
 
 import './removestyleAbrirFecharModal.css'
 import { Modal } from './modalExluir.style'
@@ -15,10 +15,10 @@ function PaginaModal(props) {
                 window.alert(props.objeto.nome)
                 break;
             case 'servico':
-                window.alert(props.objeto.nome)
+                await api.delete(`/servicos/${props.objeto.serv_codigo}`)
                 break;
             case 'produto':
-                window.alert(props.objeto.nome)
+                await api.delete(`/produtos/${props.objeto.prod_codigo}`)
                 break;
             default:
                 break;

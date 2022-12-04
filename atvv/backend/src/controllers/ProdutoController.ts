@@ -1,8 +1,24 @@
 import { Request, Response } from "express";
 import {ProdutoRepository} from "../repositories/produtoRepository"
+import { ProdutoModel } from "../database/models/tables";
+
+
+export const criaProduto = async (req,res) =>{
+  try{
+      const produto = await ProdutoModel.create({
+          prod_descricao:req.body.prod_descricao,
+          prod_valor:req.body.prod_valor
+      })
+      console.log(produto)
+      res.status(201).json(produto)
+
+  }catch(error){
+      res.status(500).json({message:error})
+  }
+}
 
 interface IProdutoController {
-    create: (req: Request, res: Response) => Promise<any>;
+    create: (req: Request, res: Response) => Promise<Response>;
     findAll: (req: Request, res: Response) => Promise<any>;
     findOne: (req: Request, res: Response) => Promise<Response>;
     update: (req: Request, res: Response) => Promise<Response>;
@@ -16,15 +32,13 @@ export class ProdutoController implements IProdutoController{
         this.produtoRepository = produtoRepository;
     }
 
+
+
     async create(req: Request, res: Response) {
-        try {
           const produtoRepository = new ProdutoRepository();
           const produto = await produtoRepository.create(req.body);
           return res.status(201).json(produto);
-        }
-        catch (error) {
-          console.log(error);
-        }
+
       };
 
     async findAll(req: Request, res: Response){
@@ -57,10 +71,10 @@ export class ProdutoController implements IProdutoController{
       };
 
       async delete(req: Request, res: Response) {
-        const { id } = req.params;
+        const { prod_codigo } = req.params;
         const produtoRepository = new ProdutoRepository();
-        await produtoRepository.delete(id);
-        return res.status(204).send("Associado deletado com sucesso");
+        await produtoRepository.delete(Number (prod_codigo));
+        return res.status(204).send("Produto deletado com sucesso");
       };
 }
 

@@ -1,8 +1,8 @@
 import express from "express";
 import ClienteController from "./controllers/ClienteCotroller";
 import { clientesGenero, listaRelacao, maisConsumidosQtd, maisConsumidosGenero, maisConsumidoClientesQtd, menosConsumidoClientesQtd, maisConsumidoClientesValor } from "./controllers/ListagemController";
-import ProdutoController from "./controllers/ProdutoController";
-import ServicoController from "./controllers/ServicoController";
+import ProdutoController, { criaProduto } from "./controllers/ProdutoController";
+import ServicoController, { criaServico } from "./controllers/ServicoController";
 import TelefoneController from "./controllers/TelefoneController";
 import PedidoController from "./controllers/PedidoController";
 
@@ -18,20 +18,20 @@ router.patch("/clientes/:id", ClienteController.update);
 router.delete("/clientes/:id", ClienteController.delete);
 
 //Produto
-
+router.post("/cadastrarprodutos", criaProduto);
 router.post("/produtos", ProdutoController.create);
 router.get("/produtos", ProdutoController.findAll);
 router.get("/produtos/:id", ProdutoController.findOne);
 router.patch("/produtos/:id", ProdutoController.update);
-router.delete("/produtos/:id", ProdutoController.delete);
+router.delete("/produtos/:prod_codigo", ProdutoController.delete);
 
 //Servico
 
-router.post("/servicos", ServicoController.create);
+router.post("/cadastrarservicos", criaServico);
 router.get("/servicos", ServicoController.findAll);
 router.get("/servicos/:id", ServicoController.findOne);
 router.patch("/servicos/:id", ServicoController.update);
-router.delete("/servicos/:id", ServicoController.delete);
+router.delete("/servicos/:serv_codigo", ServicoController.delete);
 
 //telefone
 

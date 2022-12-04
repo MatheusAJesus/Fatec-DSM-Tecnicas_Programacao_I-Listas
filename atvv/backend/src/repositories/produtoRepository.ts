@@ -2,8 +2,9 @@ import { ProdutoModel } from "../database/models/tables";
 
 
 export interface ProdutoAtributes {
-    descricao?: string;
-    valor?: number;  
+  prod_codigo?: number,
+  prod_descricao: string,
+  prod_valor: number;  
   }
 
 
@@ -21,10 +22,11 @@ export class ProdutoRepository{
 
 
   async create(data: ProdutoAtributes) {
-    const { descricao, valor } = data;
+    const {prod_codigo, prod_descricao, prod_valor } = data;
     const produto = await ProdutoModel.create({
-        descricao,
-        valor
+      prod_codigo,
+      prod_descricao,
+        prod_valor
     });
     return produto
   }
@@ -37,7 +39,7 @@ export class ProdutoRepository{
     return produto;
   };
 
-  async delete(id: number | string) {
-    await ProdutoModel.destroy({ where: { id } });
+  async delete(prod_codigo: number) {
+    await ProdutoModel.destroy({ where: { prod_codigo } });
   }
 }

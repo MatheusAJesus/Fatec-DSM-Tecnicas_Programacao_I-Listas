@@ -82,7 +82,7 @@ export const TelefoneModel = db.define("telefone", {
       allowNull: false,
     },
     prod_valor: {
-      type: DataTypes.DECIMAL,
+      type: DataTypes.INTEGER,
     }
   });
 

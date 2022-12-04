@@ -1,34 +1,29 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { mockClientes } from '../../../mocks/mockClientes.ts'
 import { Formulario } from "../clientes.defaultStyles"
+import {api} from '../../../services/api'
 
 
 function CadastroCliente(){
-	// const navigate = useNavigate();
 	const { register, handleSubmit } = useForm();
-	
-	const onSubmit = data =>{
-		console.log(data.genero)
-		mockClientes.push(
-			{
-				nome: data.name,
-				nomeSocial: data.nomeSocial,
-				genero: data.genero,
-				cpf: data.cpf,
-				dataEmissaoCpf: new Date(data.dataEmissaoCpf),
-				rg: data.rg,
-				dataEmissaoRg: new Date(data.dataEmissaoRg),
-				DDD: data.DDD,
-				telefone: data.telefone,
-				produtosConsumidos:[],
-				servicosConsumidos:[]
-			},
-		)
-		window.alert('Cliente cadastrado com sucesso')
-	}
+    const navigate = useNavigate();
+
+    const onSubmit = async data => {
+        console.log(data);
+         api.post('/cadastrarclientes', {
+			cli_nome: data.cli_nome,
+			  cli_cpf: data.cli_cpf,
+			  cli_rg: data.cli_rg,
+			  cli_nome_social: data.cli_nome_social,
+			  cli_data_cadastro: data.cli_data_cadastro,
+			  cli_telefone: data.cli_telefone,
+			  cli_genero: data.cli_genero,
+        });
+        navigate('/clientes');
+      };
 
 	return(
 		<>

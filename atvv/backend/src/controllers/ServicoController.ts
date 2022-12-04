@@ -1,5 +1,21 @@
 import { Request, Response } from "express";
 import {ServicoRepository} from "../repositories/servicoRepository"
+import { ServicoModel } from "../database/models/tables";
+
+
+export const criaServico = async (req,res) =>{
+  try{
+      const servico = await ServicoModel.create({
+        serv_descricao:req.body.serv_descricao,
+        serv_valor:req.body.serv_valor
+      })
+      console.log(servico)
+      res.status(201).json(servico)
+
+  }catch(error){
+      res.status(500).json({message:error})
+  }
+}
 
 interface IServicoController {
     create: (req: Request, res: Response) => Promise<any>;
@@ -57,9 +73,9 @@ export class ServicoController implements IServicoController{
       };
 
       async delete(req: Request, res: Response) {
-        const { id } = req.params;
+        const { serv_codigo } = req.params;
         const servicoRepository = new ServicoRepository();
-        await servicoRepository.delete(id);
+        await servicoRepository.delete(Number (serv_codigo));
         return res.status(204).send("Associado deletado com sucesso");
       };
 }

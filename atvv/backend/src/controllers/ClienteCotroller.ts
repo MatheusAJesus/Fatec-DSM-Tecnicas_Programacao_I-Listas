@@ -1,5 +1,26 @@
 import { Request, Response } from "express";
 import {ClienteRepository} from "../repositories/clienteRepository"
+import { ClienteModel } from "../database/models/tables";
+
+
+export const criaCliente = async (req,res) =>{
+  try{
+      const cliente = await ClienteModel.create({
+        cli_nome: req.body.cli_nome,
+			  cli_cpf: req.body.cli_cpf,
+			  cli_rg: req.body.cli_rg,
+			  cli_nome_social: req.body.cli_nome_social,
+			  cli_data_cadastro: req.body.cli_data_cadastro,
+			  cli_telefone: req.body.cli_telefone,
+			  cli_genero: req.body.cli_genero,
+      })
+      console.log(cliente)
+      res.status(201).json(cliente)
+
+  }catch(error){
+      res.status(500).json({message:error})
+  }
+}
 
 interface IClienteController {
     create: (req: Request, res: Response) => Promise<any>;
